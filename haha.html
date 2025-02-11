@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+      .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 5px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 7px 15px;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Password Puzzle</h2>
+        <p>Luật chơi: người chơi sẽ chiến thắng khi giải hết 10 PASS</p>
+        <button id="startButton">Bắt đầu</button>
+        <p id="question" style="display: none;"></p>
+        <input type="text" id="inputBox" style="display: none;">
+        <button id="checkButton" onclick="checkPassword()" style="display: none;">Xác nhận</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        const passwords = [
+            "JF", "9002", "số chân con chó!", "4", "1",
+            "CCW", "PASS4", "haikhonghainam", "6", "Password Puzzle"
+        ];
+        const questions = [
+            "PASS 1: Mật khẩu gồm 2 ký tự in hoa, viết liền. (Phím gai)",
+            "PASS 2: Mật khẩu 4 ký tự viết liền. (2009)",
+            "PASS 3: Mật khẩu là số chân con chó!",
+            "PASS 4: Mật khẩu là số chân con chó.",
+            "PASS 5: Mật khẩu là số nghiệm của phương trình x^2 = 0.",
+            "PASS 6: Mật khẩu là chữ in hoa. (Cal Cheese Wafer)",
+            "PASS 7: PASS4.",
+            "PASS 8: 2025. Không có khoảng cách!",
+            "PASS 9: Mật khẩu là 1 số hoàn hảo.",
+            "PASS 10:  " // Lưu ý: có thể cần chỉnh sửa câu hỏi này
+        ];
+        let currentPass = 0;
+        let gameStarted = false;
+
+        document.getElementById("startButton").addEventListener("click", startGame);
+
+        function startGame() {
+            gameStarted = true;
+            document.getElementById("startButton").style.display = "none";
+            document.getElementById("question").style.display = "block";
+            document.getElementById("inputBox").style.display = "block";
+            document.getElementById("question").textContent = questions[currentPass];
+            document.getElementById("checkButton").style.display = "block"; // Sửa lỗi chính ở đây
+        }
+
+        function checkPassword() {
+            if (!gameStarted) return;
+
+            let input = document.getElementById("inputBox").value.trim();
+            if (input.toLowerCase() === passwords[currentPass].toLowerCase()) {
+                currentPass++;
+                if (currentPass < passwords.length) {
+                    document.getElementById("question").textContent = questions[currentPass];
+                    document.getElementById("inputBox").value = "";
+                    document.getElementById("message").textContent = "✅ Chính xác! Tiếp tục nào!";
+                    document.getElementById("message").style.color = "green";
+                } else {
+                    document.getElementById("question").textContent = " Bạn đã phá đảo trò chơi!hãy chờ phần 2 để nhận thẻ garena..🖕";
+                    document.getElementById("inputBox").style.display = "none";
+                    document.getElementById("checkButton").style.display = "none"; // Sửa lỗi chính ở đây
+                    document.getElementById("message").style.display = "none";
+                }
+            } else {
+                document.getElementById("message").textContent = "❌ Sai rồi. Thử lại nhé.";
+                document.getElementById("message").style.color = "red";
+            }
+        }
+    </script>
+</body>
+
+</html>
