@@ -12,7 +12,7 @@
             margin: 20px;
         }
 
-      .container {
+        .container {
             max-width: 600px;
             margin: auto;
             padding: 20px;
@@ -34,6 +34,14 @@
         #message {
             margin-top: 10px;
         }
+
+        /* Căn giữa GIF */
+        #animeDance {
+            display: none;
+            width: 300px;
+            margin: 20px auto;
+            display: block;
+        }
     </style>
 </head>
 
@@ -46,6 +54,9 @@
         <input type="text" id="inputBox" style="display: none;">
         <button id="checkButton" onclick="checkPassword()" style="display: none;">Xác nhận</button>
         <p id="message"></p>
+        
+        <!-- Anime Girl Dance GIF -->
+        <img id="animeDance" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWgwYjBmYzNpbXJiemF2Y3pyYjR2b25hZXIyaWRncXY2dngxZjkzbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/a6pzK009rlCak/giphy.gif">
     </div>
 
     <script>
@@ -55,15 +66,15 @@
         ];
         const questions = [
             "PASS 1: Mật khẩu gồm 2 ký tự in hoa, viết liền. (Phím gai)",
-            "PASS 2: Mật khẩu 4 ký tự viết liền. (2009)",
-            "PASS 3: Mật khẩu là số chân con chó!",
+            "PASS 2: Mật khẩu 4 ký tự viết liền.(2009)",
+            "PASS 3: Mật khẩu là số chân con chó!,gồm 4 dấu cách,chữ thường,1 kí tự đặc biệt,12 chữ",
             "PASS 4: Mật khẩu là số chân con chó.",
             "PASS 5: Mật khẩu là số nghiệm của phương trình x^2 = 0.",
-            "PASS 6: Mật khẩu là chữ in hoa. (Cal Cheese Wafer)",
+            "PASS 6: Mật khẩu là chữ in hoa.(Cal Cheese Wafer),gồm 3 kí tự viết liền",
             "PASS 7: PASS4.",
-            "PASS 8: 2025. Không có khoảng cách!",
+            "PASS 8: 2025. Không có khoảng cách!,chữ thường",
             "PASS 9: Mật khẩu là 1 số hoàn hảo.",
-            "PASS 10:  " // Lưu ý: có thể cần chỉnh sửa câu hỏi này
+            "PASS 10: "
         ];
         let currentPass = 0;
         let gameStarted = false;
@@ -76,7 +87,7 @@
             document.getElementById("question").style.display = "block";
             document.getElementById("inputBox").style.display = "block";
             document.getElementById("question").textContent = questions[currentPass];
-            document.getElementById("checkButton").style.display = "block"; // Sửa lỗi chính ở đây
+            document.getElementById("checkButton").style.display = "block"; 
         }
 
         function checkPassword() {
@@ -91,10 +102,13 @@
                     document.getElementById("message").textContent = "✅ Chính xác! Tiếp tục nào!";
                     document.getElementById("message").style.color = "green";
                 } else {
-                    document.getElementById("question").textContent = " Bạn đã phá đảo trò chơi!hãy chờ phần 2 để nhận thẻ garena..🖕";
+                    document.getElementById("question").textContent = "🎉 Bạn đã phá đảo trò chơi!";
                     document.getElementById("inputBox").style.display = "none";
-                    document.getElementById("checkButton").style.display = "none"; // Sửa lỗi chính ở đây
+                    document.getElementById("checkButton").style.display = "none"; 
                     document.getElementById("message").style.display = "none";
+
+                    // Hiển thị ảnh GIF anime nhảy
+                    document.getElementById("animeDance").style.display = "block";
                 }
             } else {
                 document.getElementById("message").textContent = "❌ Sai rồi. Thử lại nhé.";
